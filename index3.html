@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<p>nice. <br> <span id="message2">explore the depth to get a clear picture. Do Not Refresh or you will be disqualified</span></p>
+	<div id="difference" hidden>
+		<img id="picture" src="picture.png" width="400" alt="">
+		<p>differences<span id="differences">:0</span> </p>
+		<button id="submit">OK</button>
+	</div>
+	<p id="message"></p>
+</body>
+<style>
+	body {
+		height: 80000px;
+	}
+</style>
+<script>
+	let visit=eval(localStorage.getItem('visit'));
+	visit=visit?visit:0;
+	console.log(visit)
+	if(visit>0 && visit<6){
+		alert(atob('aSBzZWUgeW91IGxpa2UgdG8gcmVmcmVzaA=='))
+		localStorage.setItem('visit',visit+1)
+		location.reload()
+	}else{
+		localStorage.setItem('visit', '1')
+	}
+	let clicks = 0
+	function showDiff() {
+		document.querySelector('#difference').removeAttribute('hidden')
+		document.querySelector('#picture').addEventListener('click', function () {
+			clicks++
+			document.querySelector('#differences').innerHTML = ':'+clicks
+		})
+		document.querySelector('#submit').addEventListener('click', function(){
+			document.designMode='off'
+			document.querySelector('#picture').setAttribute('src', 'picture2.jpg')
+			let cclicks=document.querySelector('#differences').innerHTML.charAt(1)
+			if(cclicks==='0'){
+				document.querySelector('#message').innerHTML=atob('Q29uZ3JhdHMuIGtleTogU0FTREVNTw==')
+			}else{
+				document.designMode='on'
+				setTimeout(function(){document.designMode='off';document.querySelector('#submit').innerHTML='try again' }, 4000)
+				document.querySelector('#message').innerHTML=atob('bWFrZSBpdCAwIHF1aWNrISA8YnI+RG8gTm90IFJlZnJlc2g=')
+			}
+		})
+	}
+	function onScroll() {
+		if (window.scrollY > 5000) {
+			console.log('nice');
+			showDiff()
+			document.querySelector('#message2').innerHTML='<h2>click on the differences</h2>'
+			window.removeEventListener('scroll', onScroll)
+		}
+	}
+	window.addEventListener('scroll', onScroll)
+</script>
+
+</html>
